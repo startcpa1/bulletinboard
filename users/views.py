@@ -7,17 +7,16 @@ from users.serializers import UserSerializer
 
 
 class UserListView(generics.ListAPIView):
+    """Представление информации списка пользователей"""
     serializer_class = UserSerializer
     queryset = User.objects.all()
-    # permission_classes = [AllowAny]
 
 
 class UserCreateView(generics.CreateAPIView):
     serializer_class = UserSerializer
 
-    # permission_classes = [AllowAny]
-
     def create(self, request, *args, **kwargs):
+        """Переопределяем метод для сохранения хешированного пароля"""
         serializer = UserSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         self.perform_create(serializer)
@@ -33,16 +32,19 @@ class UserCreateView(generics.CreateAPIView):
 
 
 class UserUpdateView(generics.UpdateAPIView):
+    """Представление для обновления информации о пользователе"""
     serializer_class = UserSerializer
     queryset = User.objects.all()
     permission_classes = [IsProfileUser]
 
 
 class UserDetailView(generics.RetrieveAPIView):
+    """Представление для получения информации о пользователе"""
     serializer_class = UserSerializer
     queryset = User.objects.all()
 
 
 class UserDeleteView(generics.DestroyAPIView):
+    """Представление для удаления информации о пользователе"""
     queryset = User.objects.all()
     permission_classes = [IsProfileUser]
