@@ -16,7 +16,7 @@ class Review(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='дата отзыва')
 
     def __str__(self):
-        return f'{self.author}'
+        return f'{self.text}'
 
     class Meta:
         verbose_name = 'отзыв'

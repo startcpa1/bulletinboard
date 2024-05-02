@@ -7,7 +7,7 @@ class IsAdmin(BasePermission):
     """Проверяем права администратора"""
 
     def has_permission(self, request, view):
-        return request.user.role == UserRole.MEMBER
+        return request.user.role == UserRole.ADMIN
 
 
 class IsOwner(BasePermission):
