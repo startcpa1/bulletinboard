@@ -1,25 +1,25 @@
 from django.db import models
-from django.utils import timezone
+
+from users.models import User
 
 NULLABLE = {'blank': True,
             'null': True,
             }
 
 
-class Advertisement(models.Model):
+class Bulletin(models.Model):
     """Создаем модель объявления"""
 
-    title = models.CharField(max_length='100', verbose_name='Название товара', **NULLABLE)
+    title = models.CharField(max_length=100, verbose_name='Название товара', **NULLABLE)
     price = models.IntegerField(verbose_name='Цена товара', **NULLABLE)
     description = models.TextField(verbose_name='Описание товара', **NULLABLE)
-    author = models.CharField(verbose_name='Пользователь', **NULLABLE)
+    author = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Пользователь', **NULLABLE)
 
-    created_at = models.DateTimeField(default=timezone.now(), verbose_name='дата объявления')
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name='дата объявления')
 
     def __str__(self):
         return f'{self.title} {self.description}'
 
     class Meta:
-        class Meta:
-            verbose_name = 'объявление'
-            verbose_name_plural = 'объявления'
+        verbose_name = 'объявление'
+        verbose_name_plural = 'объявления'

@@ -1,3 +1,5 @@
 from django.contrib import admin
 
-# Register your models here.
+from bulletin.models import Bulletin
+
+admin.site.register(Bulletin)

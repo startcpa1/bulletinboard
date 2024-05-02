@@ -1,7 +1,4 @@
 from rest_framework import serializers
-from rest_framework.fields import SerializerMethodField
-
-from bulletin.models import Bulletin
 from reviews.models import Review
 
 
