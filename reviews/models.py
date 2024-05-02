@@ -1,5 +1,4 @@
 from django.db import models
-from django.utils import timezone
 
 from bulletin.models import Bulletin
 from users.models import User
